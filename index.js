@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Landing Page with Menu</title>
+      <title>Landing Page with Login/Signup</title>
       <style>
         body, h1, p {
           margin: 0;
@@ -30,11 +30,13 @@ app.get('/', (req, res) => {
         nav {
           background: #007bff;
           padding: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
         nav ul {
           list-style: none;
           display: flex;
-          justify-content: center;
           margin: 0;
           padding: 0;
         }
@@ -48,6 +50,23 @@ app.get('/', (req, res) => {
         }
         nav ul li a:hover {
           text-decoration: underline;
+        }
+        .auth-buttons {
+          display: flex;
+          gap: 1rem;
+        }
+        .auth-buttons a {
+          text-decoration: none;
+          color: #007bff;
+          background: #fff;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          font-weight: bold;
+          transition: background 0.3s, color 0.3s;
+        }
+        .auth-buttons a:hover {
+          background: #0056b3;
+          color: #fff;
         }
         header {
           text-align: center;
@@ -85,6 +104,10 @@ app.get('/', (req, res) => {
           <li><a href="/services">Services</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
+        <div class="auth-buttons">
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+        </div>
       </nav>
 
       <!-- Header Section -->
@@ -113,6 +136,15 @@ app.get('/contact', (req, res) => {
 
 app.get('/get-started', (req, res) => {
   res.send('<h1>Thank you for getting started!</h1>');
+});
+
+// Login and Signup routes
+app.get('/login', (req, res) => {
+  res.send('<h1>Login Page</h1><p>Enter your credentials to log in.</p>');
+});
+
+app.get('/signup', (req, res) => {
+  res.send('<h1>Signup Page</h1><p>Create an account to get started.</p>');
 });
 
 // Start the server
