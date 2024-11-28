@@ -139,8 +139,56 @@ app.get('/get-started', (req, res) => {
 });
 
 // Login and Signup routes
+// Login route
 app.get('/login', (req, res) => {
-  res.send('<h1>Login Page</h1><p>Enter your credentials to log in.</p>');
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login</title>
+      <!-- Bootstrap CSS -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2JlYhSwovN6b2CBtJ4p7Z5DpAJl8UjCJA7ljyBOvuZgIB1zBJv7T"
+        crossorigin="anonymous"
+      />
+    </head>
+    <body>
+      <div class="container mt-5">
+        <h1 class="text-center mb-4">Login</h1>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form action="/login" method="POST" class="border p-4 rounded shadow">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+});
+
+// Login form submission handling
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  // Simulate login (you can replace this with actual authentication logic)
+  if (email === 'admin@example.com' && password === 'password') {
+    res.send('<h1>Login Successful</h1><p>Welcome back, Admin!</p>');
+  } else {
+    res.send('<h1>Login Failed</h1><p>Invalid email or password. Please try again.</p>');
+  }
 });
 
 app.get('/signup', (req, res) => {
