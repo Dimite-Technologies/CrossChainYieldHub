@@ -3,7 +3,7 @@ const { ethers } = require("hardhat");
 async function main() {
 
   const AiOracleAddress = "0x143db3CEEfbdfe5631aDD3E50f7614B6ba708BA7";
-  const BridgeContractAddress = "0xYourBridgeContractAddress";
+  const BridgeContractAddress = "0x6EDCE65403992e310A62460808c4b910D972f10f"; // from layerzero
   const DexAggregatorAddress = "0xYourDexAggregatorAddress";
 
     const [deployer] = await ethers.getSigners();
