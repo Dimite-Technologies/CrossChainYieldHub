@@ -1,1 +1,11 @@
 # CrossChainYieldHub
+
+deployed addresses:
+
+MockDexAggregator deployed to: 0x359451AC3C73827A7653C0Ab7D30243844a55447
+
+YieldAggregator deployed to: 0x069F92465a8795a06A28B1e85f320D57CE29Bc8F
+
+MEVProtection deployed to: 0x7c9D4E3769FD085566de1DB20E5703D3Ec50d37f
+
+CrossChainLiquidityAggregator deployed to: 0xe34c86A03F17E29F77beeE7c898Adae4dD578006
