@@ -2,10 +2,19 @@
 
 deployed addresses:
 
-MockDexAggregator deployed to: 0x359451AC3C73827A7653C0Ab7D30243844a55447
+MockDexAggregator deployed to: 0xb893DAA7F210bE7190e77249ca30281C8c0508DE
+YieldAggregator deployed to: 0xd52D2CA7975Cfbc3342863A1B76d21104a5C8266
+MEVProtection deployed to: 0x41b5Cc57269f5E2AC278B860373a812f527daE7a
+CrossChainLiquidityAggregator deployed to: 0x4B916e434E358060eb75ee0Add19Da15E93748f4
 
-YieldAggregator deployed to: 0x069F92465a8795a06A28B1e85f320D57CE29Bc8F
+Successfully verified contract MockDexAggregator on the block explorer.
+https://testnet.opbnbscan.com/address/0xb893DAA7F210bE7190e77249ca30281C8c0508DE#code
 
-MEVProtection deployed to: 0x7c9D4E3769FD085566de1DB20E5703D3Ec50d37f
+Successfully verified contract YieldAggregator on the block explorer.
+https://testnet.opbnbscan.com/address/0xd52D2CA7975Cfbc3342863A1B76d21104a5C8266#code
 
-CrossChainLiquidityAggregator deployed to: 0xe34c86A03F17E29F77beeE7c898Adae4dD578006
+Successfully verified contract MEVProtection on the block explorer.
+https://testnet.opbnbscan.com/address/0x41b5Cc57269f5E2AC278B860373a812f527daE7a#code
+
+Successfully verified contract CrossChainLiquidityAggregator on the block explorer.
+https://testnet.opbnbscan.com/address/0x4B916e434E358060eb75ee0Add19Da15E93748f4#code

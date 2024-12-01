@@ -4,13 +4,12 @@ async function main() {
 
   const AiOracleAddress = "0x143db3CEEfbdfe5631aDD3E50f7614B6ba708BA7"; // chainlink
   const BridgeContractAddress = "0x6EDCE65403992e310A62460808c4b910D972f10f"; // from layerzero
-  const mockDexAggregatorAddress = "0x359451AC3C73827A7653C0Ab7D30243844a55447"; // mock address
 
     const [deployer] = await ethers.getSigners();
     console.log("Deploying contracts with the account:", deployer.address);
 
-    const balance = await deployer.getBalance();
-    console.log("Account balance:", ethers.utils.formatEther(balance), "ETH");
+    // const balance = await deployer.getBalance();
+    // console.log("Account balance:", ethers.utils.formatEther(balance), "ETH");
 
       // Deploy Mock Dex Aggregator
       const MockDexAggregator = await ethers.getContractFactory("MockDexAggregator");
