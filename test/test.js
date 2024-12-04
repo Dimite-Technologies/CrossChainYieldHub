@@ -14,18 +14,6 @@ describe("Yield Aggregator and Related Contracts", function () {
     const BridgeContractAddress = "0x6EDCE65403992e310A62460808c4b910D972f10f"; // from layerzero
     const DexAggregatorAddress = "YourDexAggregatorAddress"; 
 
-    // // Deploy Mock Protocols
-    // const MockProtocol = await ethers.getContractFactory("MockProtocol");
-    // mockProtocol1 = await MockProtocol.deploy();
-    // mockProtocol2 = await MockProtocol.deploy();
-
-    // // Deploy Mock Bridge
-    // const MockBridge = await ethers.getContractFactory("MockBridge");
-    // mockBridge = await MockBridge.deploy();
-
-    // // Deploy Mock Dex Aggregator
-    // const MockDexAggregator = await ethers.getContractFactory("MockDexAggregator");
-    // mockDexAggregator = await MockDexAggregator.deploy();
 
     // Deploy Yield Aggregator
     const YieldAggregator = await ethers.getContractFactory("YieldAggregator");

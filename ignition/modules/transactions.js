@@ -1,51 +1,66 @@
-// Import required libraries
 const hre = require("hardhat");
-const ethers = hre.ethers;
+const { ethers } = require("ethers"); // Change from hardhat to ethers package directly
 
-async function attachYieldAggregator() {
+async function main() {
+    // Use Hardhat's provider
+    const provider = hre.ethers.provider;
+    
+    // Get network info
+    const network = await provider.getNetwork();
+    console.log(`Connected to network: ${network.name} (Chain ID: ${network.chainId})`);
+
+    // Use Hardhat's signers
+    const [signer] = await hre.ethers.getSigners();
+    const signerAddress = await signer.getAddress();
+    console.log(`Signer Address: ${signerAddress}`);
+
+    // Contract Addresses
+    const yieldAggregatorAddress = "0xd52D2CA7975Cfbc3342863A1B76d21104a5C8266";
+    const tokenAddress = "0xc42afaa04b651fb1fb42c31b34d353b2f80b97fa";
+
     try {
-        // Get the first signer (account)
-        const [signer] = await ethers.getSigners();
-
-        // Specify the contract address
-        const yieldAggregatorAddress = "0xd52D2CA7975Cfbc3342863A1B76d21104a5C8266";
-
-        // Get the contract ABI 
-        // Option 1: If you have the compiled artifacts
-        const YieldAggregator = await ethers.getContractFactory("YieldAggregator");
+        const Token = new hre.ethers.Contract(tokenAddress, [
+            "function balanceOf(address owner) view returns (uint256)",
+            "function approve(address spender, uint256 amount) returns (bool)"
+        ], signer);
         
-        // Attach the contract using the ABI and address
-        const yieldAggregator = YieldAggregator.attach(yieldAggregatorAddress);
+        const YieldAggregator = new hre.ethers.Contract(yieldAggregatorAddress, [
+            "function deposit(address token, uint256 amount)"
+        ], signer);
 
+        // // Create contract instances using Hardhat's ethers
+        // const Token = await hre.ethers.getContractAt("IERC20", tokenAddress, signer);
+        // const YieldAggregator = await hre.ethers.getContractAt("YieldAggregator", yieldAggregatorAddress, signer);
 
-        // Verify the contract connection
-        console.log("Yield Aggregator Contract Address:", yieldAggregator.target);
+        // Fetch token balance
+        const signerBalance = await Token.balanceOf(signerAddress);
+        const formattedBalance = hre.ethers.BigNumber.from(signerBalance);
+        console.log(`Token Balance: ${hre.ethers.utils.formatUnits(formattedBalance, 18)} tokens`);
 
-        // Example of interacting with the contract
-        try {
-            // Call a view function (if available)
-            const someViewFunction = await yieldAggregator.someViewFunction();
-            console.log("View Function Result:", someViewFunction);
-        } catch (interactionError) {
-            console.error("Error interacting with contract:", interactionError);
+        // Deposit Tokens into YieldAggregator
+        const depositAmount = hre.ethers.utils.parseUnits("10", 18);
+
+        if (formattedBalance.gte(depositAmount)) {
+            console.log("Approving tokens for YieldAggregator...");
+            const approveTx = await Token.approve(yieldAggregatorAddress, depositAmount);
+            await approveTx.wait();
+            console.log(`Approved ${hre.ethers.utils.formatUnits(depositAmount, 18)} tokens for YieldAggregator.`);
+
+            console.log("Depositing tokens...");
+            const depositTx = await YieldAggregator.deposit(tokenAddress, depositAmount);
+            await depositTx.wait();
+            console.log(`Deposited ${hre.ethers.utils.formatUnits(depositAmount, 18)} tokens.`);
+        } else {
+            console.error("Insufficient balance for deposit.");
         }
-
-        return yieldAggregator;
     } catch (error) {
-        console.error("Error attaching YieldAggregator contract:", error);
-        throw error;
+        console.error("Error encountered:", error);
+        console.error("Detailed error message:", error.message);
+        console.error("Detailed error stack:", error.stack);
     }
 }
 
-// Export the function if you want to use it in other files
-module.exports = attachYieldAggregator;
-
-// If running directly, call the function
-if (require.main === module) {
-    attachYieldAggregator()
-        .then(() => process.exit(0))
-        .catch((error) => {
-            console.error(error);
-            process.exit(1);
-        });
-}
+main().catch((error) => {
+    console.error("Script execution failed:", error);
+    process.exitCode = 1;
+});
