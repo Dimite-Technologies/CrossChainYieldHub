@@ -107,20 +107,6 @@ Run the script:
 
 npx hardhat run ignition/modules/transactions.js --network opBNBTestnet
 
-2. Check Logs
-The script outputs:
-
-Signer address and token balances.
-Transaction hashes for deposit, withdrawal, and MEV-protected operations.
-Errors, if any.
-
-
-Troubleshooting
-Insufficient Token Balance Ensure your wallet has enough ERC-20 tokens on the opBNB Testnet. Use a faucet or transfer tokens for testing.
-
-Contract Address Errors Verify that contract addresses in transactions.js match the actual deployed addresses.
-
-Deployment Issues Check the RPC URL and wallet private key in hardhat.config.js.
 
 # Future Enhancements
 - Expand support for more DeFi protocols in YieldAggregator.
@@ -132,10 +118,6 @@ This project is licensed under the MIT License.
 # Author
 Built as a practical exploration of DeFi concepts. Contributions and feedback are welcome!
 
+# Twitter project link
 
-
-
-
-Recommended Protocols for CrossChainYieldHub
-1. Across Protocol (ACX)
-Token Address: 0xc42afaa04b651fb1fb42c31b34d353b2f80b97fa
+https://x.com/futhmah456/status/1866596350403678633
